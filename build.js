@@ -5,7 +5,7 @@ const { marked } = require('marked');
 // Configuration
 const config = {
     content: 'content',
-    output: 'dist',
+    output: 'docs',
     template: 'template.html'
 };
 
@@ -61,10 +61,12 @@ async function buildSite() {
                 .replace('{{title}}', title)
                 .replace('{{content}}', html);
             
-            await fs.outputFile(
-                path.join(config.output, page.replace('.md', '.html')),
-                finalHtml
-            );
+            // Special handling for index page
+            const outputPath = page === 'index.md' 
+                ? path.join(config.output, 'index.html')
+                : path.join(config.output, page.replace('.md', '.html'));
+            
+            await fs.outputFile(outputPath, finalHtml);
         }
     }
     
