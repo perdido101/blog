@@ -4,13 +4,13 @@ Welcome to my personal blog where I share thoughts, ideas, and experiences about
 
 ## Recent Posts
 
-- [Welcome to Our Blog](/blog/first-post.html) - An introduction to what's coming
+- [Welcome to Our Blog](/blog/blog/first-post.html) - An introduction to what's coming
 
 ## Quick Links
 
-- [About Me](/about.html) - Learn more about who I am
-- [FAQ](/faq.html) - Common questions answered
-- [Contact](/contact.html) - Get in touch
+- [About Me](/blog/about.html) - Learn more about who I am
+- [FAQ](/blog/faq.html) - Common questions answered
+- [Contact](/blog/contact.html) - Get in touch
 
 ## Featured Content
 

@@ -6,7 +6,8 @@ const { marked } = require('marked');
 const config = {
     content: 'content',
     output: 'docs',
-    template: 'template.html'
+    template: 'template.html',
+    baseUrl: '/blog'
 };
 
 // Create base template
@@ -17,15 +18,15 @@ const baseTemplate = `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="${config.baseUrl}/css/style.css">
 </head>
 <body>
     <header>
         <nav>
-            <a href="/">Home</a>
-            <a href="/blog">Blog</a>
-            <a href="/about.html">About</a>
-            <a href="/faq.html">FAQ</a>
+            <a href="${config.baseUrl}/">Home</a>
+            <a href="${config.baseUrl}/blog">Blog</a>
+            <a href="${config.baseUrl}/about.html">About</a>
+            <a href="${config.baseUrl}/faq.html">FAQ</a>
         </nav>
     </header>
     <main>
