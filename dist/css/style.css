@@ -1,0 +1,50 @@
+/* Base styles */
+body {
+    font-family: -apple-system, system-ui, sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    margin-right: 1rem;
+    color: #333;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Content */
+main {
+    margin: 2rem 0;
+}
+
+h1, h2, h3 {
+    color: #222;
+}
+
+/* Blog post styles */
+article time {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #666;
+} 
