@@ -27,7 +27,7 @@ const baseTemplate = `
             <a href="${config.baseUrl}/" class="logo">The BLOG STARTER</a>
             <nav>
                 <a href="${config.baseUrl}/">Home</a>
-                <a href="${config.baseUrl}/blog-tutorial.html">Blog Tutorial</a>
+                <a href="${config.baseUrl}/blog/">Blog</a>
                 <a href="${config.baseUrl}/about.html">About Me</a>
                 <a href="${config.baseUrl}/contact.html">Contact Me</a>
             </nav>
@@ -121,10 +121,15 @@ async function buildSite() {
                 .replace('{{title}}', title)
                 .replace('{{content}}', html);
             
-            // Special handling for index page
-            const outputPath = page === 'index.md' 
-                ? path.join(config.output, 'index.html')
-                : path.join(config.output, page.replace('.md', '.html'));
+            // Special handling for index and blog pages
+            let outputPath;
+            if (page === 'index.md') {
+                outputPath = path.join(config.output, 'index.html');
+            } else if (page === 'blog.md') {
+                outputPath = path.join(config.output, 'blog', 'index.html');
+            } else {
+                outputPath = path.join(config.output, page.replace('.md', '.html'));
+            }
             
             await fs.outputFile(outputPath, finalHtml);
         }
