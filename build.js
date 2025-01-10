@@ -7,8 +7,18 @@ const config = {
     content: 'content',
     output: 'docs',
     template: 'template.html',
-    baseUrl: '/blog'
+    baseUrl: '/blog',
+    convertKitFormId: '5468061' // Replace with your actual ConvertKit form ID
 };
+
+// Newsletter form template
+const newsletterTemplate = `
+<div class="newsletter-box">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Get the latest blogging tips and tutorials delivered to your inbox.</p>
+    <script async data-uid="{{formId}}" src="https://fantastic-maker-3439.ck.page/{{formId}}/index.js"></script>
+</div>
+`;
 
 // Create base template
 const baseTemplate = `
@@ -38,6 +48,7 @@ const baseTemplate = `
         <div class="content-area">
             <article class="main-content">
                 {{content}}
+                {{newsletter}}
             </article>
             <aside class="sidebar">
                 <div class="featured-box">
@@ -117,9 +128,15 @@ async function buildSite() {
             const html = marked(content);
             const title = page.replace('.md', '');
             
+            // Add newsletter form for blog pages
+            const newsletter = page === 'blog.md' ? 
+                newsletterTemplate.replace('{{formId}}', config.convertKitFormId) : 
+                '';
+            
             const finalHtml = baseTemplate
                 .replace('{{title}}', title)
-                .replace('{{content}}', html);
+                .replace('{{content}}', html)
+                .replace('{{newsletter}}', newsletter);
             
             // Special handling for index and blog pages
             let outputPath;
@@ -148,7 +165,8 @@ async function buildSite() {
             
             const finalHtml = baseTemplate
                 .replace('{{title}}', title)
-                .replace('{{content}}', html);
+                .replace('{{content}}', html)
+                .replace('{{newsletter}}', ''); // No newsletter on individual posts
             
             await fs.outputFile(
                 path.join(config.output, 'blog', post.replace('.md', '.html')),
